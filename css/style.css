@@ -1,0 +1,541 @@
+/* CSS Variables for Theme */
+:root {
+    /* Light Mode Colors */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f5f5;
+    --text-primary: #222222;
+    --text-secondary: #666666;
+    --border-color: #e0e0e0;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --shadow-strong: rgba(0, 0, 0, 0.15);
+    
+    /* Accent Color */
+    --accent-color: #6C63FF;
+    --accent-hover: #5A52E0;
+    
+    /* Transitions */
+    --transition: all 0.3s ease;
+}
+
+/* Dark Mode Colors */
+body.dark-mode {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2a2a2a;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --border-color: #3a3a3a;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --shadow-strong: rgba(0, 0, 0, 0.5);
+}
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    overflow-x: hidden;
+}
+
+/* Main Container */
+.container {
+    width: 90%;
+    max-width: 800px;
+    text-align: center;
+    padding: 2rem;
+}
+
+/* Logo */
+.logo h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Greeting */
+.greeting {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+/* DateTime Container */
+.datetime-container {
+    margin-bottom: 2rem;
+}
+
+.clock {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.clock.hidden {
+    display: none;
+}
+
+.date {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.date.hidden {
+    display: none;
+}
+
+/* Search Container */
+.search-container {
+    margin: 2rem 0;
+}
+
+.search-provider-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.provider-icon {
+    width: 20px;
+    height: 20px;
+    display: none;
+}
+
+.provider-emoji {
+    font-size: 1.2rem;
+}
+
+/* Search Form */
+.search-form {
+    display: flex;
+    gap: 0.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.search-input {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 50px;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    outline: none;
+    transition: var(--transition);
+}
+
+.search-input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
+}
+
+.search-button {
+    padding: 1rem 1.5rem;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.search-button:hover {
+    background-color: var(--accent-hover);
+    transform: scale(1.05);
+}
+
+.search-button:active {
+    transform: scale(0.95);
+}
+
+/* Settings Trigger Button */
+.settings-trigger {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px var(--shadow-strong);
+    transition: var(--transition);
+    z-index: 100;
+}
+
+.settings-trigger:hover {
+    transform: scale(1.1) rotate(45deg);
+    background-color: var(--accent-hover);
+}
+
+/* Settings Overlay */
+.settings-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+}
+
+.settings-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Settings Panel */
+.settings-panel {
+    position: fixed;
+    top: 0;
+    right: -450px;
+    width: 100%;
+    max-width: 450px;
+    height: 100%;
+    background-color: var(--bg-primary);
+    box-shadow: -4px 0 20px var(--shadow-strong);
+    overflow-y: auto;
+    transition: right 0.3s ease;
+    z-index: 1001;
+}
+
+.settings-overlay.active .settings-panel {
+    right: 0;
+}
+
+/* Settings Header */
+.settings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-primary);
+    z-index: 10;
+}
+
+.settings-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.close-button:hover {
+    background-color: var(--bg-secondary);
+}
+
+/* Settings Content */
+.settings-content {
+    padding: 1.5rem;
+}
+
+.settings-section {
+    margin-bottom: 2rem;
+}
+
+.settings-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+/* Search Providers */
+.search-providers {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+.provider-button {
+    padding: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+}
+
+.provider-button:hover {
+    border-color: var(--accent-color);
+    background-color: var(--bg-primary);
+}
+
+.provider-button.active {
+    border-color: var(--accent-color);
+    background-color: var(--accent-color);
+    color: white;
+}
+
+/* Setting Item */
+.setting-item {
+    margin-bottom: 1.5rem;
+}
+
+.setting-item label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+/* Text Input */
+.text-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 1rem;
+    outline: none;
+    transition: var(--transition);
+}
+
+.text-input:focus {
+    border-color: var(--accent-color);
+}
+
+/* Toggle Switch */
+.toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    margin-bottom: 0 !important;
+}
+
+.toggle-checkbox {
+    display: none;
+}
+
+.toggle-switch {
+    position: relative;
+    width: 50px;
+    height: 26px;
+    background-color: var(--border-color);
+    border-radius: 13px;
+    transition: var(--transition);
+}
+
+.toggle-switch::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+    top: 3px;
+    left: 3px;
+    transition: var(--transition);
+}
+
+.toggle-checkbox:checked + .toggle-switch {
+    background-color: var(--accent-color);
+}
+
+.toggle-checkbox:checked + .toggle-switch::before {
+    transform: translateX(24px);
+}
+
+/* Color Swatches */
+.color-swatches {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.color-swatch {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+}
+
+.color-swatch:hover {
+    transform: scale(1.1);
+}
+
+.color-swatch.active {
+    border-color: var(--text-primary);
+}
+
+.color-swatch.active::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Custom Color Picker */
+.custom-color-picker {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.custom-color-picker label {
+    margin-bottom: 0 !important;
+}
+
+.color-input {
+    width: 60px;
+    height: 40px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: var(--bg-secondary);
+}
+
+/* Reset Button */
+.reset-button {
+    width: 100%;
+    padding: 1rem;
+    background-color: #E74C3C;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.reset-button:hover {
+    background-color: #C0392B;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
+
+.reset-button:active {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .logo h1 {
+        font-size: 2rem;
+    }
+
+    .greeting {
+        font-size: 1.2rem;
+    }
+
+    .clock {
+        font-size: 2rem;
+    }
+
+    .search-form {
+        flex-direction: column;
+    }
+
+    .search-button {
+        width: 100%;
+    }
+
+    .settings-panel {
+        max-width: 100%;
+    }
+
+    .search-providers {
+        grid-template-columns: 1fr;
+    }
+
+    .settings-trigger {
+        bottom: 1rem;
+        right: 1rem;
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+
+    .clock {
+        font-size: 1.5rem;
+    }
+}
+
+/* Scrollbar Styling */
+.settings-panel::-webkit-scrollbar {
+    width: 8px;
+}
+
+.settings-panel::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+.settings-panel::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 4px;
+}
+
+.settings-panel::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-hover);
+}
